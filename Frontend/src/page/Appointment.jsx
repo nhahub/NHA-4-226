@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { doctors, assets } from "../assets/assets_frontend/assets";
-import {AppContext} from '../context/AppContext';
+import { AppContext } from '../context/AppContext';
 import RelatedDoctors from '../components/RelatedDoctors';
 
 const Appointment = () => {
@@ -158,10 +158,10 @@ const Appointment = () => {
                         toast.success('Appointment Booked');
 
                         setTimeout(() => {
-                            navigate('/my-appointments');
+                            navigate('/my-appointment');
                         }, 1500);
                     }}
-                    className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full mt-6 hover:opacity-90"
+                    className="bg-primary cursor-pointer text-white text-sm font-light px-14 py-3 rounded-full mt-6 hover:opacity-90"
                 >
                     Book an appointment
                 </button>
