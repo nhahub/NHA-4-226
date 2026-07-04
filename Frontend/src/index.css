@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
+
+*{
+  font-family: 'Outfit';
+}
 
 @theme {
   --color-primary: #0046ad; /* حط اللون بتاعك هنا */
+
+}
+.grid-cols-auto{
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .active hr{
@@ -9,4 +18,8 @@
 }
 .active li{
     @apply text-[#0046ad] ;
+}
+
+::-webkit-scrollbar {
+    @apply hidden;
 }

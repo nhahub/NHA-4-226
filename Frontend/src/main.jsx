@@ -7,9 +7,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import runFullIdentityTest from './backendAutomatedTest.js' // Backend test
+import {AppContextProvider} from './context/AppContext.jsx'
+
+  
 
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <App />
+    <AppContextProvider>
+      <App />
+    </AppContextProvider>
   </BrowserRouter>,
 )
