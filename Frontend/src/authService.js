@@ -14,7 +14,7 @@ export const registerPatient = async (email, password, fullName, phone) => {
 
     // Save the user profile details into the Firestore 'users' collection
     // We use user.uid as the document ID to link Auth and Database together
-    await setDoc(doc(db, "users", user.uid), {
+    await setDoc(doc(db, "users", user.uid), {  
       uid: user.uid,
       name: fullName,
       email: email,
