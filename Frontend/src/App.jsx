@@ -18,9 +18,25 @@ import DoctorDashboard from "./views/DoctorDashboard";
 
 const App = () => {
   return (
-    <AuthProvider>
-      <DoctorDashboard />
-    </AuthProvider>
+    <div>
+      <div className="mx-4 sm:mx-[10%]">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/doctors/:speciality" element={<Doctors />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/my-profile" element={<MyProfile />} />
+          <Route path="/my-appointment" element={<MyAppointments />} />
+          <Route path="/appointment/:docId" element={<Appointment />} />
+        </Routes>
+      </div>
+      <div className="bg-gray-100 px-4 sm:py-[0.1%] sm:px-[10%]">
+        <Footer  />
+      </div>
+    </div>
   );
 };
 
