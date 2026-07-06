@@ -12,6 +12,8 @@ import MyAppointments from "./page/MyAppointments.jsx";
 import Appointment from "./page/Appointment.jsx";
 import Footer from "./components/Footer.jsx";
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
+import DoctorDashboard from "./views/DoctorDashboard";
 
 
 const App = () => {
