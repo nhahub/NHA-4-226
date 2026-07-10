@@ -146,13 +146,12 @@ const MyAppointments = () => {
                       </p>
 
                       <p
-                        className={`font-medium ${
-                          appointment.status === "cancelled"
+                        className={`font-medium ${appointment.status === "cancelled"
                             ? "text-red-500"
                             : appointment.status === "confirmed"
-                            ? "text-green-600"
-                            : "text-yellow-600"
-                        }`}
+                              ? "text-green-600"
+                              : "text-yellow-600"
+                          }`}
                       >
                         Status: {appointment.status || "pending"}
                       </p>
@@ -160,7 +159,7 @@ const MyAppointments = () => {
                   </div>
                 </div>
 
-                {/* Right Call-To-Action Operations Buttons */}
+                {/* Right Call-To-Action Layout Container */}
                 <div className="flex flex-col items-start gap-3 sm:items-end sm:justify-end">
                   <button
                     disabled

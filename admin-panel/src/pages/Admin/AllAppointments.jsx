@@ -3,7 +3,6 @@ import { AdminContext } from "../../context/AdminContext";
 
 const DoctorAvatar = ({ image, name }) => {
   const [imageError, setImageError] = useState(false);
-
   const firstLetter = name?.charAt(0)?.toUpperCase() || "D";
 
   return (
@@ -63,7 +62,6 @@ const AllAppointments = () => {
                 <p className="text-gray-800 font-medium">
                   {item.patientName || "Patient"}
                 </p>
-
                 <p className="text-xs text-gray-400 break-all">
                   {item.patientEmail || item.patientId || "No patient data"}
                 </p>
@@ -71,41 +69,39 @@ const AllAppointments = () => {
 
               <div className="flex items-center gap-3">
                 <DoctorAvatar
-                  image={item.doctorImage}
+                  image={item.image || item.doctorImage}
                   name={item.doctorName}
                 />
-
                 <div>
                   <p className="text-gray-800 font-medium">
                     {item.doctorName || "Doctor"}
                   </p>
-
+                  {/* ALIGNED KEY: doctorSpecialty */}
                   <p className="text-xs text-gray-400">
-                    {item.doctorSpeciality || "No speciality"}
+                    {item.doctorSpecialty || item.doctorSpeciality || "General physician"}
                   </p>
                 </div>
               </div>
 
               <div>
-                <p>{item.appointmentDate || "-"}</p>
-
+                {/* ALIGNED KEYS: date & timeSlot */}
+                <p className="text-gray-800 font-medium">{item.date || "-"}</p>
                 <p className="text-xs text-gray-400">
-                  {item.appointmentTime || ""}
+                  {item.timeSlot || ""}
                 </p>
               </div>
 
               <p className="font-medium text-gray-700">
-                ${item.fees ?? 0}
+                ${item.fees ?? 60} {/* Fallback fee matching doctor templates */}
               </p>
 
               <p
-                className={`capitalize font-medium ${
-                  item.status === "cancelled"
+                className={`capitalize font-medium ${item.status === "cancelled"
                     ? "text-red-500"
                     : item.status === "confirmed"
-                    ? "text-green-600"
-                    : "text-yellow-600"
-                }`}
+                      ? "text-green-600"
+                      : "text-yellow-600"
+                  }`}
               >
                 {item.status || "pending"}
               </p>
@@ -118,7 +114,7 @@ const AllAppointments = () => {
                 ) : (
                   <button
                     onClick={() => cancelAppointment(item.id)}
-                    className="text-red-500 border border-red-200 px-3 py-1.5 rounded-full text-xs hover:bg-red-50 transition-all"
+                    className="text-red-500 border border-red-200 px-3 py-1.5 rounded-full text-xs hover:bg-red-50 transition-all cursor-pointer"
                   >
                     Cancel
                   </button>
