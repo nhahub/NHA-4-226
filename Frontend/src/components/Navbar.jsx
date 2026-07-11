@@ -14,6 +14,7 @@ import { logoutUser } from "../authService";      // Pull secure token flushing 
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // NEW: State for mobile click toggle
 
   // Connect to your live authentication data state matrix
   const { currentUser } = useAuth();
@@ -23,6 +24,7 @@ const Navbar = () => {
     if (result.success) {
       toast.success("Logged out successfully");
       setShowMenu(false);
+      setIsProfileOpen(false);
       navigate("/login");
     } else {
       toast.error(`Signout rejected: ${result.error}`);
@@ -62,10 +64,19 @@ const Navbar = () => {
         </NavLink>
       </ul>
 
-      <div className="md:flex items-center gap-4">
+      <div className="flex items-center gap-4">
         {/* Dynamic Condition Layer: Checked directly against real observer state loops */}
         {currentUser ? (
-          <div className="flex items-center gap-2 group relative cursor-pointer">
+          /* FIXED: Added onClick toggle and onMouseLeave safety reset */
+          <div
+            onClick={() => setIsProfileOpen(prev => !prev)}
+            onMouseLeave={() => {
+              if (window.innerWidth >= 768) {
+                setIsProfileOpen(false);
+              }
+            }}
+            className="flex items-center gap-2 group relative cursor-pointer"
+          >
             <img
               className="w-8 rounded-full"
               src={proile_pic}
@@ -73,11 +84,12 @@ const Navbar = () => {
             />
             <img className="w-2.5 " src={dropdown_icon} alt="Dropdown Icon" />
 
-            <div className="absolute top-0 right-0 pt-8 text-base font-medium text-gray-600 z-20 hidden group-hover:block ">
-              <div className="min-w-48 bg-stone-100 rounded p-4 flex flex-col gap-4">
-                <p onClick={() => navigate("/my-profile")} className="hover:text-black cursor-pointer ">My Profile</p>
-                <p onClick={() => navigate("/my-appointment")} className="hover:text-black cursor-pointer ">My Appointments</p>
-                <p onClick={handleLogoutClick} className="hover:text-red-600 text-red-500 font-medium cursor-pointer border-t border-gray-200 pt-2">Logout</p>
+            {/* FIXED: Shifted top margin down to top-full so it doesn't overlap the avatar, and bound it to both hover and click states */}
+            <div className={`absolute top-full right-0 pt-2 text-base font-medium text-gray-600 z-20 ${isProfileOpen ? 'block' : 'hidden md:group-hover:block'}`}>
+              <div className="min-w-48 bg-stone-100 rounded p-4 flex flex-col gap-4 shadow-md border border-zinc-200/50">
+                <p onClick={(e) => { e.stopPropagation(); setIsProfileOpen(false); navigate("/my-profile"); }} className="hover:text-black cursor-pointer ">My Profile</p>
+                <p onClick={(e) => { e.stopPropagation(); setIsProfileOpen(false); navigate("/my-appointment"); }} className="hover:text-black cursor-pointer ">My Appointments</p>
+                <p onClick={(e) => { e.stopPropagation(); setIsProfileOpen(false); handleLogoutClick(); }} className="hover:text-red-600 text-red-500 font-medium cursor-pointer border-t border-gray-200 pt-2">Logout</p>
               </div>
             </div>
           </div>
