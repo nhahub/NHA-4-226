@@ -1,27 +1,36 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../assets/assets_frontend/assets";
 
 const Footer = () => {
+  // Helper function to scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <div className="md:mx-10  ">
+    <div className="md:mx-10">
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
+        
         {/* ----------- Left Section ----------- */}
         <div>
           <div className="flex items-center gap-2">
-            <img
-              className="h-12 w-12 cursor-pointer"
-              src={assets.logo}
-              alt="Healix Logo"
-            />
-            <span className="text-3xl cursor-pointer font-bold tracking-tighter  font-display text-primary">
+            <img className="h-12 w-12 cursor-pointer" src={assets.logo} alt="Healix Logo" />
+            <span className="text-3xl cursor-pointer font-bold tracking-tighter font-display text-primary">
               Healix
             </span>
           </div>
-          <p className="w-full md:w-2/3 text-gray-600 leading-6">
+          <p className="w-full md:w-2/3 text-gray-600 leading-6 mt-4">
             Healix is the world's leading clinic management system, built to
+
             provide a seamless sanctuary for both healthcare providers and their
+
             patients. We prioritize clarity, care, and efficiency in every
+
             digital interaction.
           </p>
         </div>
@@ -30,17 +39,26 @@ const Footer = () => {
         <div>
           <p className="text-xl font-medium mb-5">COMPANY</p>
           <ul className="flex flex-col gap-2 text-gray-600">
-            <li className="cursor-pointer hover:text-black transition-all">
-              Home
+            <li>
+              {/* Added onClick handler to every link */}
+              <Link to="/" onClick={scrollToTop} className="hover:text-black transition-all">
+                Home
+              </Link>
             </li>
-            <li className="cursor-pointer hover:text-black transition-all">
-              About us
+            <li>
+              <Link to="/about" onClick={scrollToTop} className="hover:text-black transition-all">
+                About us
+              </Link>
             </li>
-            <li className="cursor-pointer hover:text-black transition-all">
-              Contact us
+            <li>
+              <Link to="/contact" onClick={scrollToTop} className="hover:text-black transition-all">
+                Contact us
+              </Link>
             </li>
-            <li className="cursor-pointer hover:text-black transition-all">
-              Privacy policy
+            <li>
+              <Link to="#" onClick={scrollToTop} className="hover:text-black transition-all">
+                Privacy policy
+              </Link>
             </li>
           </ul>
         </div>
