@@ -38,9 +38,31 @@ import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
 import unnamed from './unnamed.png'
 import default_doctor from './default_doctor.png'
+import map_pin from './map_pin.svg'
+import phone from './phone.svg'
+import mail from './mail.svg'
+import clock from './clock.svg'
+import headphones from './headphones.svg'
+import user from './user.svg'
+import message from './message.svg'
+import send from './send.svg'
+import shield_check from './shield_check.svg'
+import users from './users.svg'
+import heart_plus from './heart_plus.svg'
 
 
 export const assets = {
+    map_pin,
+    phone,
+    mail,
+    clock,
+    headphones,
+    user,
+    message,
+    send,
+    shield_check,
+    users,
+    heart_plus,
     appointment_img,
     header_img,
     group_profiles,

@@ -11,6 +11,7 @@ import Dashboard from "./pages/Admin/Dashboard";
 import AllAppointments from "./pages/Admin/AllAppointments";
 import AddDoctor from "./pages/Admin/AddDoctor";
 import DoctorsList from "./pages/Admin/DoctorsList";
+import Messages from "./pages/Admin/Messages";
 
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard";
 import DoctorAppointments from "./pages/Doctor/DoctorAppointments";
@@ -163,6 +164,17 @@ function App() {
                     }
                     replace
                   />
+                }
+              />
+
+              <Route
+                path="/messages"
+                element={
+                  userRole === "admin" ? (
+                    <Messages />
+                  ) : (
+                    <Navigate to="/doctor-dashboard" replace />
+                  )
                 }
               />
             </Routes>
