@@ -6,7 +6,7 @@ import Doctors from "./page/Doctors.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Login from "./page/Login.jsx";
 import About from "./page/About.jsx";
-import Contact from "./page/Contact.jsx";
+import Contact from "./page/contact.jsx";
 import MyProfile from "./page/MyProfile.jsx";
 import MyAppointments from "./page/MyAppointments.jsx";
 import Appointment from "./page/Appointment.jsx";
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <AuthProvider>
       <div>
-      <ToastContainer />
+        <ToastContainer />
         <div className="mx-4 sm:mx-[10%]">
           <Navbar />
           <Routes>
