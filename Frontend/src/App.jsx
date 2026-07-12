@@ -13,57 +13,55 @@ import Appointment from "./page/Appointment.jsx";
 import Footer from "./components/Footer.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthProvider, useAuth } from "./context/AuthContext.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoutes.jsx";
 import Unauthorized from "./page/Unauthorized.jsx";
 
 const App = () => {
   return (
-    <AuthProvider>
-      <div>
-        <div className="mx-4 sm:mx-[10%]">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/doctors" element={<Doctors />} />
-            <Route path="/doctors/:speciality" element={<Doctors />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route
-              path="/my-profile"
-              element={
-                <ProtectedRoute allowedRoles={["patient"]}>
-                  <MyProfile />
-                </ProtectedRoute>
-              }
-            />
+    <div>
+      <div className="mx-4 sm:mx-[10%]">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/doctors/:speciality" element={<Doctors />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/my-profile"
+            element={
+              <ProtectedRoute allowedRoles={["patient"]}>
+                <MyProfile />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/my-appointment"
-              element={
-                <ProtectedRoute allowedRoles={["patient"]}>
-                  <MyAppointments />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path="/my-appointment"
+            element={
+              <ProtectedRoute allowedRoles={["patient"]}>
+                <MyAppointments />
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/appointment/:docId"
-              element={
-                <ProtectedRoute allowedRoles={["patient"]}>
-                  <Appointment />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/unauthorized" element={<Unauthorized />} />
-          </Routes>
-        </div>
-        <div className="bg-gray-100 px-4 sm:py-[0.1%] sm:px-[10%]">
-          <Footer />
-        </div>
+          <Route
+            path="/appointment/:docId"
+            element={
+              <ProtectedRoute allowedRoles={["patient"]}>
+                <Appointment />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/unauthorized" element={<Unauthorized />} />
+        </Routes>
       </div>
-    </AuthProvider>
+      <div className="px-4 bg-slate-50 sm:px-[10%]">
+        <Footer />
+      </div>
+    </div>
   );
 };
 

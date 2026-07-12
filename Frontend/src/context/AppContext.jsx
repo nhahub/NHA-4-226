@@ -34,8 +34,17 @@ export const AppContextProvider = ({ children }) => {
     getDoctorsData();
   }, []);
 
-  const allDoctors = [...staticDoctors, ...firebaseDoctors];
+const allDoctors = [...staticDoctors, ...firebaseDoctors].map((doctor) => {
+  const rating = Number((4.2 + Math.random() * 0.8).toFixed(1));
 
+  const reviews = Math.floor(Math.random() * 180 + 120);
+
+  return {
+    ...doctor,
+    rating,
+    reviews,
+  };
+});
   const value = {
     doctors: allDoctors,
     firebaseDoctors,
